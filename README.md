@@ -9,9 +9,9 @@ The goal is to show how to:
 - Generate predictions
 - Validate model accuracy with a confusion matrix and standard metrics
 
-## Repository Structure
+NOTE: This demo was bootstrapped using **gpmlbot**, which generated the SQL scripts quickly and recommended the best model families for the churn prediction use case. From there, I refined the workflow (splitting, training, validation, and evaluation) into a clear teaching example
 
-```text
+## Repository Structure
 bankchurn/
 ├── README.md              # This file
 ├── bankchurn_schema.sql   # Schema definition for churn tables
@@ -20,7 +20,6 @@ bankchurn/
 └── final_validation.sql   # Accuracy evaluation and confusion matrix
 
 ## Key Tables
-
 - **`bank_customer_churn`** – Raw dataset loaded from Kaggle  
 - **`churn_train` / `churn_validate`** – 80/20 training & validation splits  
 - **`churn_model`** – Trained decision tree model  
@@ -43,10 +42,14 @@ The validation step produces:
 
 
 ## . Create the schema
-
-```bash
 psql -d banks -f bankchurn_schema.sql
-```
 
+## . Load the data
+psql -d banks -f load.sql
 
+## . Train the model
+psql -d banks -f train_decisiontree.sql
+
+## . Validate the model
+psql -d banks -f final_validation.sql
 
